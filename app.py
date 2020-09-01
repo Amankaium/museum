@@ -14,3 +14,7 @@ def contact():
 @app.route("/all")
 def all():
     return render_template("all.html")
+
+@app.route("/one-image-page")
+def one():
+    return "Тут будет страница одной картины"
