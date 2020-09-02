@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Тут будет один экпонат</h1>
+    <h2>Номер: {{ number }}</h2>
+    <div>
+        <h2>Название: {{ image.0 }}</h2>
+        <img width="100%" src="{{ image.1 }}" alt="">
+    </div>
+{% endblock %}

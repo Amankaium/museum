@@ -26,12 +26,13 @@
             </li> -->
         </ul>
     </nav>
+    <div class="container-fluid">
+        {% block content %}
+        {% endblock %}
+    </div>
 
-    {% block content %}
-    {% endblock %}
-
-    <footer class="fixed-bottom text-center jumbotron">
-        this is site's footer
+    <footer class="container-fluid text-center jumbotron" style="margin: 0">
+        <div>this is site's footer</div>
     </footer>
 </body>
 </html>

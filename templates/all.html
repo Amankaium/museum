@@ -3,5 +3,13 @@
 {% block title %}Все экпонаты{% endblock %}
 
 {% block content %}
-    <h1>Все экпонаты:</h1>
+    {% for image in lst %}
+        <div>
+            <a href="{{ url_for('one', id=image.0) }}">
+                <h2>{{ image.1 }}</h2>
+                <img width="50%" src="{{ image.2 }}" alt="">
+            </a>
+        </div>
+        <hr>
+    {% endfor %}
 {% endblock %}
