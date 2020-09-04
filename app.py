@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -7,9 +7,17 @@ def homepage():
     # return "<h1>Домашняя страница!</h1>"
     return render_template("index.html")
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact.html", name="Каюм")
+    if request.method == "POST":
+        form = request.form
+        # for k in form:
+        #     print(k, form[k])
+        # print(form)
+        user_name = form["user_name"]
+    else:
+        user_name = "Дорогой друг"
+    return render_template("contact.html", name=user_name)
 
 @app.route("/all")
 def all():
@@ -41,3 +49,18 @@ def one(id):
         return "<h1>Такой картины нет</h1>"
 
     return render_template("one.html", number=id, image=image)
+
+
+@app.route("/create")
+def create_form():
+    return render_template("create_form.html")
+
+
+@app.route("/add", methods=["POST"])
+def add():
+    form = request.form
+    f = open("links.txt", mode="a+", encoding="utf-8")
+    f.write("7 " + form["name"] + " " + form["url"] + "\n")
+    f.close()
+    return "<h2>Ваша форма обработана</h2>"
+

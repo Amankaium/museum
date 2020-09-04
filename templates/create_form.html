@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <form action="{{ url_for('add') }}" method='POST'>
+        <h2>Добавить экспонат:</h2>
+        <input type="text" name="name" placeholder="Название">
+        <br><br>
+        <input type="text" name="url" placeholder="Ссылка">
+        <br><br>
+        <button>Добавить</button>
+    </form>
+
+{% endblock %}
