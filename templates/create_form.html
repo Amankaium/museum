@@ -1,14 +1,24 @@
-{% extends 'layout.html' %}
+{% extends 'museum_base.html' %}
 
-{% block content %}
+{% block museum_content %}
 
+<div class="container">
+    <h2>Добавить экспонат:</h2>
     <form action="{{ url_for('add') }}" method='POST'>
-        <h2>Добавить экспонат:</h2>
-        <input type="text" name="name" placeholder="Название">
-        <br><br>
-        <input type="text" name="url" placeholder="Ссылка">
-        <br><br>
-        <button>Добавить</button>
+        <div class="form-group">
+            <label for="name">Название экпоната:</label>
+            <input class="form-control" id="name" type="text" name="name" placeholder="Название">
+        </div>
+        <div class="form-group">
+            <label for="url">Ссылка на экпонат:</label>
+            <input class="form-control" id="url" type="text" name="url" placeholder="Ссылка">
+        </div>
+
+        <button class="btn btn-success btn-lg">Добавить</button>
     </form>
+    <br>
+    <br>
+    <br>
+</div>
 
 {% endblock %}

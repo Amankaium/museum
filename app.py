@@ -22,6 +22,7 @@ def contact():
 @app.route("/all")
 def all():
     f = open("links.txt", mode="r", encoding="utf-8")
+
     lst = []
     for row in f:
         splited = row.split()
@@ -35,6 +36,7 @@ def all():
 @app.route("/one-image-page/<id>")
 def one(id):
     f = open("links.txt", mode="r", encoding="utf-8")
+
     lst = []
     for row in f:
         splited = row.split()
@@ -59,8 +61,15 @@ def create_form():
 @app.route("/add", methods=["POST"])
 def add():
     form = request.form
-    f = open("links.txt", mode="a+", encoding="utf-8")
-    f.write("7 " + form["name"] + " " + form["url"] + "\n")
+    f = open("links.txt", mode="r+", encoding="utf-8")
+
+    rows = f.read().split("\n")
+    last_eksponat = rows[-2]
+    last_eksponat_list = last_eksponat.split()
+    last_num = int(last_eksponat_list[0])
+
+    # f.write("7 " + form["name"] + " " + form["url"] + "\n")
+    f.write(f"{last_num + 1} {form['name']} {form['url']}\n") # 7 Кисточки http:////art2bid.com/assets/images/slid..
     f.close()
     return "<h2>Ваша форма обработана</h2>"
 
