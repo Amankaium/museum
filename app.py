@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from openpyxl import load_workbook
 
 app = Flask(__name__)
 
@@ -32,6 +33,17 @@ def all():
         lst.append([number, txt, link])
     f.close()
     return render_template("all.html", lst=lst)
+
+
+@app.route("/excel")
+def excel():
+    excel_file = load_workbook("exhibits.xlsx")
+    page = excel_file["Лист1"]
+
+    lst = [[cell.value for cell in row] for row in page["A2:D11"]]
+
+    return render_template("excel.html", lst=lst)
+
 
 @app.route("/one-image-page/<id>")
 def one(id):
