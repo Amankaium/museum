@@ -14,7 +14,7 @@
     <div class="wrapper">
         <div class="content">
             <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('homepage') }}">Домой</a>
                     </li>
@@ -31,6 +31,10 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li> -->
                 </ul>
+                <form class="form-inline" action="{{ url_for('search') }}" method="POST">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Поиск" name="word">
+                    <button class="btn btn-warning">Поиск</button>
+                </form>
             </nav>
             <div class="container-fluid">
                 {% block content %}

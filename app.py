@@ -136,3 +136,18 @@ def update(id):
     exhibit.url = url
     db.session.commit()
     return "<h1>Изменения сохранены!</h1>"
+
+
+@app.route("/search", methods=["POST"])
+def search():
+    form = request.form
+    word = form["word"]
+    # SELECT * FROM Exhibit WHERE name LIKE "%neon%"
+    
+    # 1
+    # exhibits = Exhibit.query.filter(Exhibit.name.like(f"%{word}%")).all()
+
+    # 2
+    exhibits = db.engine.execute(f"SELECT * FROM Exhibit WHERE name LIKE '%{word}%'")
+    
+    return render_template("exhibits.html", lst=exhibits)
