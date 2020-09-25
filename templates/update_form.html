@@ -1,0 +1,24 @@
+{% extends 'museum_base.html' %}
+
+{% block museum_content %}
+
+<div class="container">
+    <h2>Изменить экспонат:</h2>
+    <form action="{{ url_for('update', id=exhibit.id) }}" method='POST'>
+        <div class="form-group">
+            <label for="name">Название экпоната:</label>
+            <input class="form-control" id="name" type="text" name="name" placeholder="Название" value="{{ exhibit.name }}">
+        </div>
+        <div class="form-group">
+            <label for="url">Ссылка на экпонат:</label>
+            <input class="form-control" id="url" type="text" name="url" placeholder="Ссылка" value="{{ exhibit.url }}"">
+        </div>
+
+        <button class="btn btn-success btn-lg">Изменить</button>
+    </form>
+    <br>
+    <br>
+    <br>
+</div>
+
+{% endblock %}

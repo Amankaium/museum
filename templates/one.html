@@ -2,9 +2,15 @@
 
 {% block museum_content %}
     <h1>Тут будет один экпонат</h1>
-    <h2>Номер: {{ number }}</h2>
+    <h2>Номер: {{ exhibit.id }}</h2>
     <div>
-        <h2>Название: {{ image.0 }}</h2>
-        <img width="100%" src="{{ image.1 }}" alt="">
+        <h2>Название: {{ exhibit.name }}</h2>
+        <img width="100%" src="{{ exhibit.url }}" alt="">
     </div>
+    <a class="btn btn-lg btn-info" href="{{ url_for('update_form', id=exhibit.id) }}">Изменить</a>
+    <br>
+    <br>
+    <a class="btn btn-lg btn-danger" href="{{ url_for('delete', id=exhibit.id) }}">Удалить</a>
+    <br>
+    <br>
 {% endblock %}

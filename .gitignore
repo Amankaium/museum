@@ -1,2 +1,5 @@
 __pycache__/
 museumvenv
+museum.db
+sqlite3.exe
+test.db

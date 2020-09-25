@@ -1,0 +1,18 @@
+{% extends 'museum_base.html' %}
+
+{% block title %}Все экпонаты{% endblock %}
+
+{% block museum_content %}
+    <div class="row">
+        {% for object in lst %}
+            <div class="col-lg-4 col-md-6 col-sm-12"> 
+                <h3>{{ object.name }}</h3>                 
+                <a class="col-9" href="/exhibit/{{ object.id }}">
+                    <img width="90%" src="{{ object.url }}" alt="">
+                </a>
+                <br>
+                <br>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
