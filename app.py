@@ -1,10 +1,13 @@
 from flask import Flask, render_template, request
 from openpyxl import load_workbook
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm.session import sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
 
 app = Flask(__name__)
-# app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:postgres@localhost/museum_flask'
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///D:\\kaium\\projects\\python04\\projects\\museum\\museum.db'
+app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:postgres@localhost/museum_flask'
+# app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///D:\\kaium\\projects\\python04\\projects\\museum\\museum.db'
 
 db = SQLAlchemy(app)
 
@@ -145,9 +148,19 @@ def search():
     # SELECT * FROM Exhibit WHERE name LIKE "%neon%"
     
     # 1
-    # exhibits = Exhibit.query.filter(Exhibit.name.like(f"%{word}%")).all()
+    exhibits = Exhibit.query.filter(Exhibit.name.like(f"%{word}%")).all()
 
     # 2
-    exhibits = db.engine.execute(f"SELECT * FROM Exhibit WHERE name LIKE '%{word}%'")
+    # exhibits = db.engine.execute(f"SELECT * FROM Exhibit WHERE name LIKE '%{word}%'")
+    # "SELECT * FROM Exhibit WHERE name LIKE '%%'"
+
+    # SQL injection
+    # engine = create_engine('postgresql://postgres:postgres@localhost:5432/museum_flask')
+    # # Base = declarative_base()
     
+    # session = sessionmaker(engine)()
+
+    # exhibits = session.execute(f"SELECT * FROM Exhibit WHERE name LIKE '%{word}%'")
+    # # Neon%'; UPDATE Exhibit SET name = 'ВАС ВЗЛОМАЛИ!!!' WHERE id = 2; SELECT * FROM Exhibit WHERE name LIKE '%Neon
+    # session.commit()
     return render_template("exhibits.html", lst=exhibits)
